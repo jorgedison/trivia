@@ -23,10 +23,11 @@
 	<script src="Keyboard/docs/js/prettify.js"></script> <!-- syntax highlighting -->
 
 
+
 <style type="text/css">
 .cajatexto_1 {
 position: absolute;
-top: 740px; left: 120px;
+top: 750px; left: 120px;
 font-size: 30px;
 border-color: white;
 border: 0px;
@@ -38,7 +39,7 @@ width: 840px;
 
 .cajatexto_2 {
 position: absolute;
-top: 965px; left: 120px;
+top: 975px; left: 120px;
 font-size: 30px;
 border-color: white;
 border: 0px;
@@ -49,7 +50,7 @@ width: 840px;
 
 .cajatexto_3 {
 position: absolute;
-top: 1185px; left: 120px;
+top: 1195px; left: 120px;
 font-size: 30px;
 border-color: white;
 border: 0px;
