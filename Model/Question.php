@@ -79,9 +79,6 @@ class Question
 		//var_dump($question);
 		//die();
 		$insert=$db->prepare('INSERT INTO respuesta (value) VALUES (1)');
-				$insert->bindValue('nombres',$question->getNombres());
-		$insert->bindValue('apellidos',$question->getApellidos());
-		$insert->bindValue('estado',$question->getEstado());
 		$insert->execute();
 	}
 
@@ -90,9 +87,6 @@ class Question
 		//var_dump($question);
 		//die();
 		$insert=$db->prepare('INSERT INTO respuesta (value) VALUES (0)');
-				$insert->bindValue('nombres',$question->getNombres());
-		$insert->bindValue('apellidos',$question->getApellidos());
-		$insert->bindValue('estado',$question->getEstado());
 		$insert->execute();
 	}
 
@@ -100,12 +94,9 @@ class Question
 		$db=Db::getConnect();
 		$listaquestions=[];
 
-		$select=$db->query('SELECT * FROM question order by id');
+		$select=$db->query('SELECT sum(value) as x from respuesta order by fecha_registro desc limit 5');
 
-		foreach($select->fetchAll() as $question){
-			$listaquestions[]=new question($question['id'],$question['nombres'],$question['apellidos'],$question['estado']);
-		}
-		return $listaquestions;
+		return $select;
 	}
 
 	public static function searchById($id){

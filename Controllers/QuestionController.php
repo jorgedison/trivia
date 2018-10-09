@@ -50,11 +50,7 @@ class QuestionController
 	/*Pregunta 1 verdadero*/
 
 	function cHJlZ3VudGFkb3N2ZXJkYWRlcm8(){
-		if (!isset($_POST['estado'])) {
-			$estado="of";
-		}else{
-			$estado="on";
-		}
+
 		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
 
 		Question::verdadero($question);
@@ -126,14 +122,9 @@ class QuestionController
 	/*Pregunta 4 verdadero*/
 
 	function cHJlZ3VudGFjaW5jb3ZlcmRhZGVybw(){
-		if (!isset($_POST['estado'])) {
-			$estado="of";
-		}else{
-			$estado="on";
-		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
 
-		Question::verdadero($question);
+
+		Question::all();
 		
 		require_once('Views/Question/5.php');
 	}	
@@ -151,6 +142,11 @@ class QuestionController
 		Question::falso($question);
 		
 		require_once('Views/Question/5.php');
+	}
+
+	function c2lndWVpbnRlbnRhbmRv(){
+		
+		require_once('Views/Question/sigueintentando.php');
 	}
 
 	function error(){
