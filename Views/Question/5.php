@@ -27,7 +27,7 @@
 <style type="text/css">
 .cajatexto_1 {
 position: absolute;
-top: 750px; left: 120px;
+top: 755px; left: 120px;
 font-size: 30px;
 border-color: white;
 border: 0px;
@@ -39,7 +39,7 @@ width: 840px;
 
 .cajatexto_2 {
 position: absolute;
-top: 975px; left: 120px;
+top: 980px; left: 120px;
 font-size: 30px;
 border-color: white;
 border: 0px;
@@ -50,7 +50,7 @@ width: 840px;
 
 .cajatexto_3 {
 position: absolute;
-top: 1195px; left: 120px;
+top: 1200px; left: 120px;
 font-size: 30px;
 border-color: white;
 border: 0px;
