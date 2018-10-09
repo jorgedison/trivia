@@ -144,6 +144,17 @@ class QuestionController
 		require_once('Views/Question/5.php');
 	}
 
+	function cHJlZ3VudGFzZWlz(){
+
+		$question= new Question($_POST['nombres'],$_POST['correo'],$_POST['celular']);
+
+		Question::saveuser($question);
+		
+		require_once('Views/Question/5.php');
+	}
+
+
+
 	function c2lndWVpbnRlbnRhbmRv(){
 		
 		require_once('Views/Question/sigueintentando.php');

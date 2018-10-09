@@ -2,7 +2,7 @@
 
 
 $controllers=array(
-	'question'=>['index','register','save','show','updateshow','update','delete','search','error', 'verdadero', 'falso', 'cHJlZ3VudGF1bm8', 'cHJlZ3VudGFkb3N2ZXJkYWRlcm8', 'cHJlZ3VudGFkb3NmYWxzbw', 'cHJlZ3VudGF0cmVzdmVyZGFkZXJv', 'cHJlZ3VudGFjdWF0cm92ZXJkYWRlcm8', 'cHJlZ3VudGFjdWF0cm9mYWxzbw', 'cHJlZ3VudGFjaW5jb2ZhbHNv', 'cHJlZ3VudGFjaW5jb3ZlcmRhZGVybw', 'c2lndWVpbnRlbnRhbmRv']
+	'question'=>['index','register','save', 'saveuser','show','updateshow','update','delete','search','error', 'verdadero', 'falso', 'cHJlZ3VudGF1bm8', 'cHJlZ3VudGFkb3N2ZXJkYWRlcm8', 'cHJlZ3VudGFkb3NmYWxzbw', 'cHJlZ3VudGF0cmVzdmVyZGFkZXJv', 'cHJlZ3VudGFjdWF0cm92ZXJkYWRlcm8', 'cHJlZ3VudGFjdWF0cm9mYWxzbw', 'cHJlZ3VudGFjaW5jb2ZhbHNv', 'cHJlZ3VudGFjaW5jb3ZlcmRhZGVybw', 'c2lndWVpbnRlbnRhbmRv']
 );
 
 if (array_key_exists($controller,  $controllers)) {

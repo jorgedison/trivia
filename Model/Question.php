@@ -15,7 +15,9 @@ class Question
 		$this->setId($id);
 		$this->setNombres($nombres);
 		$this->setApellidos($apellidos);
-		$this->setEstado($estado);		
+		$this->setEstado($estado);	
+		$this->setCorreo($correo);
+		$this->setCelular($celular);		
 	}
 
 	public function getId(){
@@ -32,6 +34,22 @@ class Question
 
 	public function setNombres($nombres){
 		$this->nombres = $nombres;
+	}
+
+	public function getCorreo(){
+		return $this->correo;
+	}
+
+	public function setCorreo($correo){
+		$this->correo = $correo;
+	}
+
+	public function getCelular(){
+		return $this->celular;
+	}
+
+	public function setCelular($celular){
+		$this->celular = $celular;
 	}
 
 	public function getApellidos(){
@@ -71,6 +89,18 @@ class Question
 		$insert->bindValue('nombres',$question->getNombres());
 		$insert->bindValue('apellidos',$question->getApellidos());
 		$insert->bindValue('estado',$question->getEstado());
+		$insert->execute();
+	}
+
+	public static function saveuser($question){
+		$db=Db::getConnect();
+		var_dump($question);
+		//die();
+		
+		$insert=$db->prepare('INSERT INTO usuario (nombres) VALUES (1)');
+		$insert->bindValue('nombres',$question->getNombres());
+		$insert->bindValue('correo',$question->getCorreo());
+		$insert->bindValue('celular',$question->getCelular());
 		$insert->execute();
 	}
 

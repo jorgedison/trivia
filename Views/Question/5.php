@@ -58,19 +58,31 @@ width: 840px;
     border: none;
 }
 
+.demo {
+position: absolute;
+top: 750px; left: 120px;
+font-size: 30px;
+border-color: white;
+border: 0px;
+width: 840px;
+    background: transparent;
+    border: none;
+    color: #222222;
+}
+
 </style>
 
 
+<!--<input id="text" type="text" class= "demo" >-->
 
-
-<input id="text" type="text" >
-
-<input type="text" class="cajatexto_1" id="nombres" name="nombres">
-<input type="text" class="cajatexto_2" id="nombres" name="nombres">
-<input type="text" class="cajatexto_3" id="nombres" name="nombres">
+<input type="text" class="cajatexto_1" id="nombres" name="nombres">-
+<input type="email" class="cajatexto_2" id="correo" name="correo">
+<input type="text" class="cajatexto_3" id="celular" name="celular">
 
 <img src="assets/images/6.png" usemap="#image-map">
 
 <map name="image-map">
-    <area target="" alt="" title="" href="" coords="336,1459,736,1559" shape="rect">
+    <area target="" alt="" title="" href="?controller=question&&action=cHJlZ3VudGFzZWlz" coords="336,1459,736,1559" shape="rect">
 </map>
+
+   <!-- <button type="submit" class="btn btn-primary">Guardar</button>-->
