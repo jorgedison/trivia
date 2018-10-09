@@ -34,6 +34,7 @@ border: 0px;
 width: 840px;
     background: transparent;
     border: none;
+    border-color: white;
     color: #222222;
 }
 
@@ -45,7 +46,9 @@ border-color: white;
 border: 0px;
 width: 840px;
     background: transparent;
+    border-color: white;
     border: none;
+    color: #222222;
 }
 
 .cajatexto_3 {
@@ -57,6 +60,8 @@ border: 0px;
 width: 840px;
     background: transparent;
     border: none;
+    border-color: white;
+    color: #222222;
 }
 
 .demo {
