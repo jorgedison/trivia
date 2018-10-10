@@ -8,9 +8,11 @@ class Question
 	private $nombres;
 	private $apellidos;
 	private $estado;
+	private $correo;
+	private $celular;
 
 	
-	function __construct($id, $nombres,$apellidos, $estado, $correo, $celular)
+	function __construct($id, $nombres, $correo, $celular, $apellidos, $estado)
 	{
 		$this->setId($id);
 		$this->setNombres($nombres);
