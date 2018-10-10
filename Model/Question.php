@@ -122,11 +122,27 @@ class Question
 
 	public static function all(){
 		$db=Db::getConnect();
-		$listaquestions=[];
+		// //$lista=[];
+ 
+		// $select=$db->query('SELECT sum(value) FROM (SELECT respuesta.value FROM respuesta ORDER BY respuesta.value desc limit 4) as subt');
+		// var_dump($select);
+		//$row = $select->row();
+		//$select->execute();
+		//$questionDb=$select->fetch();
+ 		//$question = new question($questionDb['id'],$questionDb['nombres'], $questionDb['apellidos'], $questionDb['estado']);
+		//foreach($select->fetchAll() as $alumno){
+		//	$lista[]=new Question($alumno['id'],$alumno['nombres'],$alumno['apellidos'],$alumno['estado']);
+		//}
+		//return $row;
 
-		$select=$db->query('SELECT sum(value) as x from respuesta order by fecha_registro desc limit 5');
+		$stmt = $db->prepare("SELECT sum(value) as x FROM (SELECT respuesta.value FROM respuesta ORDER BY respuesta.value desc limit 4) as subt'");
+		$stmt->execute();
 
-		return $select;
+		$row = $db->fetchAll();
+		$sum = $row->x;
+
+return $sum;
+
 	}
 
 	public static function searchById($id){

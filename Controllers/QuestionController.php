@@ -123,10 +123,9 @@ class QuestionController
 
 	function cHJlZ3VudGFjaW5jb3ZlcmRhZGVybw(){
 
-
-		Question::all();
-		
-		require_once('Views/Question/5.php');
+		//$sum = Question::all();
+		//var_dump($sum);
+		require_once('Views/Question/felicidades.php');
 	}	
 
 	/*Pregunta 4 falso*/
@@ -152,8 +151,6 @@ class QuestionController
 		
 		require_once('Views/Question/5.php');
 	}
-
-
 
 	function c2lndWVpbnRlbnRhbmRv(){
 		
