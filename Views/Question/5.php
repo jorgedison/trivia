@@ -80,7 +80,7 @@ width: 840px;
 </style>
 
 <!--<input id="text" type="text" class= "demo" >-->
-<form  method="POST">
+<form name="myform" action="?controller=question&&action=cHJlZ3VudGFzZWlz"  method="POST">
 <input type="text" class="cajatexto_1" id="nombres" name="nombres" maxlength="50"  required="required">
 <input type="email" class="cajatexto_2" id="correo" name="correo" maxlength="30"  required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 <input type="text" class="cajatexto_3" id="celular" name="celular" maxlength="9" required="required" type="number" min="0" step="1">
@@ -89,7 +89,7 @@ width: 840px;
 <img src="assets/images/6.png" usemap="#image-map">
 
 <map name="image-map">
-    <area target="" alt="" title="" href="?controller=question&&action=cHJlZ3VudGFzZWlz" coords="336,1459,736,1559" shape="rect">
+    <area target="" alt="" title="" onClick="myform.submit();" coords="336,1459,736,1559" shape="rect">
 </map>
 
    <!-- <button type="submit" class="btn btn-primary">Guardar</button>-->

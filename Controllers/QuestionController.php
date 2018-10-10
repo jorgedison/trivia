@@ -51,7 +51,7 @@ class QuestionController
 
 	function cHJlZ3VudGFkb3N2ZXJkYWRlcm8(){
 
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::verdadero($question);
 		
@@ -81,7 +81,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::verdadero($question);
 		
@@ -96,7 +96,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::verdadero($question);
 		
@@ -136,7 +136,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::falso($question);
 		
@@ -145,11 +145,11 @@ class QuestionController
 
 	function cHJlZ3VudGFzZWlz(){
 
-		$question= new Question($_POST['nombres'],$_POST['correo'],$_POST['celular']);
+		$question= new Question(null,$_POST['nombres'],$_POST['correo'],$_POST['celular'], null, null);
 
 		Question::saveuser($question);
 		
-		require_once('Views/Question/5.php');
+		require_once('Views/Question/0.php');
 	}
 
 	function c2lndWVpbnRlbnRhbmRv(){

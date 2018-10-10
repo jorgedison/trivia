@@ -10,7 +10,7 @@ class Question
 	private $estado;
 
 	
-	function __construct($id, $nombres,$apellidos, $estado)
+	function __construct($id, $nombres,$apellidos, $estado, $correo, $celular)
 	{
 		$this->setId($id);
 		$this->setNombres($nombres);
@@ -97,7 +97,7 @@ class Question
 		var_dump($question);
 		//die();
 		
-		$insert=$db->prepare('INSERT INTO usuario (nombres) VALUES (1)');
+		$insert=$db->prepare('INSERT INTO usuarios (nombres,  correo, celular) VALUES (:nombres, :correo, :celular)');
 		$insert->bindValue('nombres',$question->getNombres());
 		$insert->bindValue('correo',$question->getCorreo());
 		$insert->bindValue('celular',$question->getCelular());
