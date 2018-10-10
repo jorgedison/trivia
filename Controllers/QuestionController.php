@@ -20,7 +20,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::verdadero($question);
 		
@@ -33,7 +33,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::falso($question);
 		
@@ -50,7 +50,11 @@ class QuestionController
 	/*Pregunta 1 verdadero*/
 
 	function cHJlZ3VudGFkb3N2ZXJkYWRlcm8(){
-
+		if (!isset($_POST['estado'])) {
+			$estado="of";
+		}else{
+			$estado="on";
+		}
 		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::verdadero($question);
@@ -66,7 +70,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::falso($question);
 		
@@ -111,7 +115,7 @@ class QuestionController
 		}else{
 			$estado="on";
 		}
-		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado);
+		$question= new Question(null, $_POST['nombres'],$_POST['apellidos'],$estado, null, null);
 
 		Question::falso($question);
 		

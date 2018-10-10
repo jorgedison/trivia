@@ -96,7 +96,7 @@ class Question
 
 	public static function saveuser($question){
 		$db=Db::getConnect();
-		var_dump($question);
+		//var_dump($question);
 		//die();
 		
 		$insert=$db->prepare('INSERT INTO usuarios (nombres,  correo, celular) VALUES (:nombres, :correo, :celular)');

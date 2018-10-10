@@ -60,7 +60,7 @@ function GetPageGroups()
 function GetPageInfos()
 {
     $result = array();
-    $result[] = array('caption' => 'Usuarios', 'short_caption' => 'Usuarios', 'filename' => 'usuarios.php', 'name' => 'usuarios', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Usuarios', 'short_caption' => 'Usuarios', 'filename' => 'Usuarios.php', 'name' => 'Usuarios', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     return $result;
 }
 

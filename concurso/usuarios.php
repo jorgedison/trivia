@@ -33,21 +33,24 @@
     
     
     
-    class usuariosPage extends Page
+    class UsuariosPage extends Page
     {
         protected function DoBeforeCreate()
         {
-            $this->dataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`usuarios`');
+            $selectQuery = 'select id, nombres, correo, celular from usuarios WHERE nombres <> \'\' and correo <> \'\' and celular <> \'\' ';
+            $insertQuery = array();
+            $updateQuery = array();
+            $deleteQuery = array();
+            $this->dataset = new QueryDataset(
+              MySqlIConnectionFactory::getInstance(), 
+              GetConnectionOptions(),
+              $selectQuery, $insertQuery, $updateQuery, $deleteQuery, 'Usuarios');
             $this->dataset->addFields(
                 array(
-                    new IntegerField('id', true, true, true),
+                    new IntegerField('id', false, true),
                     new StringField('nombres'),
                     new StringField('correo'),
-                    new StringField('celular'),
-                    new DateTimeField('fecha_registro', true)
+                    new StringField('celular')
                 )
             );
         }
@@ -83,8 +86,7 @@
                 new FilterColumn($this->dataset, 'id', 'id', 'CODIGO'),
                 new FilterColumn($this->dataset, 'nombres', 'nombres', 'NOMBRES'),
                 new FilterColumn($this->dataset, 'correo', 'correo', 'CORREO'),
-                new FilterColumn($this->dataset, 'celular', 'celular', 'CELULAR'),
-                new FilterColumn($this->dataset, 'fecha_registro', 'fecha_registro', 'Fecha Registro')
+                new FilterColumn($this->dataset, 'celular', 'celular', 'CELULAR')
             );
         }
     
@@ -128,8 +130,6 @@
             //
             $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_nombres_handler_list');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -140,8 +140,6 @@
             //
             $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_correo_handler_list');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -175,8 +173,6 @@
             //
             $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_nombres_handler_view');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -184,8 +180,6 @@
             //
             $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_correo_handler_view');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -199,12 +193,22 @@
         protected function AddEditColumns(Grid $grid)
         {
             //
+            // Edit column for id field
+            //
+            $editor = new SpinEdit('id_edit');
+            $editColumn = new CustomEditColumn('CODIGO', 'id', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddEditColumn($editColumn);
+            
+            //
             // Edit column for nombres field
             //
             $editor = new TextEdit('nombres_edit');
-            $editor->SetMaxLength(100);
             $editColumn = new CustomEditColumn('NOMBRES', 'nombres', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
             
@@ -212,9 +216,9 @@
             // Edit column for correo field
             //
             $editor = new TextEdit('correo_edit');
-            $editor->SetMaxLength(100);
             $editColumn = new CustomEditColumn('CORREO', 'correo', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
             
@@ -222,9 +226,9 @@
             // Edit column for celular field
             //
             $editor = new TextEdit('celular_edit');
-            $editor->SetMaxLength(10);
             $editColumn = new CustomEditColumn('CELULAR', 'celular', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
         }
@@ -235,9 +239,9 @@
             // Edit column for nombres field
             //
             $editor = new TextEdit('nombres_edit');
-            $editor->SetMaxLength(100);
             $editColumn = new CustomEditColumn('NOMBRES', 'nombres', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
             
@@ -245,9 +249,9 @@
             // Edit column for correo field
             //
             $editor = new TextEdit('correo_edit');
-            $editor->SetMaxLength(100);
             $editColumn = new CustomEditColumn('CORREO', 'correo', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
             
@@ -255,9 +259,9 @@
             // Edit column for celular field
             //
             $editor = new TextEdit('celular_edit');
-            $editor->SetMaxLength(10);
             $editColumn = new CustomEditColumn('CELULAR', 'celular', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
         }
@@ -265,12 +269,22 @@
         protected function AddInsertColumns(Grid $grid)
         {
             //
+            // Edit column for id field
+            //
+            $editor = new SpinEdit('id_edit');
+            $editColumn = new CustomEditColumn('CODIGO', 'id', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
             // Edit column for nombres field
             //
             $editor = new TextEdit('nombres_edit');
-            $editor->SetMaxLength(100);
             $editColumn = new CustomEditColumn('NOMBRES', 'nombres', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             
@@ -278,9 +292,9 @@
             // Edit column for correo field
             //
             $editor = new TextEdit('correo_edit');
-            $editor->SetMaxLength(100);
             $editColumn = new CustomEditColumn('CORREO', 'correo', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             
@@ -288,9 +302,9 @@
             // Edit column for celular field
             //
             $editor = new TextEdit('celular_edit');
-            $editor->SetMaxLength(10);
             $editColumn = new CustomEditColumn('CELULAR', 'celular', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             $grid->SetShowAddButton(false && $this->GetSecurityInfo()->HasAddGrant());
@@ -318,8 +332,6 @@
             //
             $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_nombres_handler_print');
             $grid->AddPrintColumn($column);
             
             //
@@ -327,8 +339,6 @@
             //
             $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_correo_handler_print');
             $grid->AddPrintColumn($column);
             
             //
@@ -356,8 +366,6 @@
             //
             $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_nombres_handler_export');
             $grid->AddExportColumn($column);
             
             //
@@ -365,8 +373,6 @@
             //
             $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_correo_handler_export');
             $grid->AddExportColumn($column);
             
             //
@@ -380,12 +386,20 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
+            // View column for id field
+            //
+            $column = new NumberViewColumn('id', 'id', 'CODIGO', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddCompareColumn($column);
+            
+            //
             // View column for nombres field
             //
             $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_nombres_handler_compare');
             $grid->AddCompareColumn($column);
             
             //
@@ -393,8 +407,6 @@
             //
             $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
-            $column->SetFullTextWindowHandlerName('usuariosGrid_correo_handler_compare');
             $grid->AddCompareColumn($column);
             
             //
@@ -449,7 +461,7 @@
             
             $result->SetUseImagesForActions(true);
             $result->SetUseFixedHeader(true);
-            $result->SetShowLineNumbers(true);
+            $result->SetShowLineNumbers(false);
             $result->setAllowSortingByClick(false);
             $result->setAllowSortingByDialog(false);
             $result->SetViewMode(ViewMode::TABLE);
@@ -491,69 +503,8 @@
         }
     
         protected function doRegisterHandlers() {
-            //
-            // View column for nombres field
-            //
-            $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_nombres_handler_list', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
             
-            //
-            // View column for correo field
-            //
-            $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_correo_handler_list', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
             
-            //
-            // View column for nombres field
-            //
-            $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_nombres_handler_print', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            //
-            // View column for correo field
-            //
-            $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_correo_handler_print', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            //
-            // View column for nombres field
-            //
-            $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_nombres_handler_compare', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            //
-            // View column for correo field
-            //
-            $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_correo_handler_compare', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            //
-            // View column for nombres field
-            //
-            $column = new TextViewColumn('nombres', 'nombres', 'NOMBRES', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_nombres_handler_view', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            //
-            // View column for correo field
-            //
-            $column = new TextViewColumn('correo', 'correo', 'CORREO', $this->dataset);
-            $column->SetOrderable(true);
-            $handler = new ShowTextBlobHandler($this->dataset, $this, 'usuariosGrid_correo_handler_view', $column);
-            GetApplication()->RegisterHTTPHandler($handler);
         }
        
         protected function doCustomRenderColumn($fieldName, $fieldData, $rowData, &$customText, &$handled)
@@ -697,12 +648,12 @@
 
     try
     {
-        $Page = new usuariosPage("usuarios", "usuarios.php", GetCurrentUserPermissionSetForDataSource("usuarios"), 'UTF-8');
+        $Page = new UsuariosPage("Usuarios", "Usuarios.php", GetCurrentUserPermissionSetForDataSource("Usuarios"), 'UTF-8');
         $Page->SetTitle('Usuarios');
         $Page->SetMenuLabel('Usuarios');
         $Page->SetHeader(GetPagesHeader());
         $Page->SetFooter(GetPagesFooter());
-        $Page->SetRecordPermission(GetCurrentUserRecordPermissionsForDataSource("usuarios"));
+        $Page->SetRecordPermission(GetCurrentUserRecordPermissionsForDataSource("Usuarios"));
         GetApplication()->SetMainPage($Page);
         GetApplication()->Run();
     }

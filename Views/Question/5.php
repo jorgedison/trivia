@@ -36,6 +36,7 @@ width: 840px;
     border: none;
     border-color: white;
     color: #222222;
+    outline: none;
 }
 
 .cajatexto_2 {
@@ -49,6 +50,7 @@ width: 840px;
     border-color: white;
     border: none;
     color: #222222;
+    outline: none;
 }
 
 .cajatexto_3 {
@@ -63,33 +65,25 @@ width: 840px;
     border: none;
     border-color: white;
     color: #222222;
-}
-
-.demo {
-position: absolute;
-top: 750px; left: 120px;
-font-size: 30px;
-border-color: white;
-border: 0px;
-width: 840px;
-    background: transparent;
-    border: none;
-    color: #222222;
+    outline: none;
 }
 
 </style>
 
-<!--<input id="text" type="text" class= "demo" >-->
-<form name="myform" action="?controller=question&&action=cHJlZ3VudGFzZWlz"  method="POST">
-<input type="text" class="cajatexto_1" id="nombres" name="nombres" maxlength="50"  required="required">
-<input type="email" class="cajatexto_2" id="correo" name="correo" maxlength="30"  required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-<input type="text" class="cajatexto_3" id="celular" name="celular" maxlength="9" required="required" type="number" min="0" step="1">
+<script type="text/javascript">
+function timeout_init() {
+    setTimeout('timeout_trigger()', 2000);
+}
+</script>
 
-</form>
+<form name="form" action="?controller=question&&action=cHJlZ3VudGFzZWlz" method="POST">
+<input type="text" class="cajatexto_1" id="nombres" name="nombres" maxlength="50"  required>
+<input type="email" class="cajatexto_2" id="correo" name="correo" maxlength="30"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+<input type="text" pattern="\d*" class="cajatexto_3" id="celular" name="celular" maxlength="9" required >
+
 <img src="assets/images/6.png" usemap="#image-map">
 
 <map name="image-map">
-    <area target="" alt="" title="" onClick="myform.submit();" coords="336,1459,736,1559" shape="rect">
+    <area target="" alt="" title="" onClick="form.submit(); setTimeout('timeout_trigger()', 2000);" coords="336,1459,736,1559" shape="rect">
 </map>
-
-   <!-- <button type="submit" class="btn btn-primary">Guardar</button>-->
+</form>
