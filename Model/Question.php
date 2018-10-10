@@ -99,6 +99,7 @@ class Question
 		//var_dump($question);
 		//die();
 		
+		
 		$insert=$db->prepare('INSERT INTO usuarios (nombres,  correo, celular) VALUES (:nombres, :correo, :celular)');
 		$insert->bindValue('nombres',$question->getNombres());
 		$insert->bindValue('correo',$question->getCorreo());
