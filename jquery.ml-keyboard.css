@@ -2,9 +2,9 @@ div#mlkeyboard {
 	font-family: Tahoma, Arial, sans-serif;
 	width: 100%;
 	position: fixed;
-	z-index: 1;
+	/*z-index: 1;*/
 	left: 0px;
-    top: 500px;
+    top: 100px;
 }
 
 div#mlkeyboard ul,
