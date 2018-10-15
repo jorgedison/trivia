@@ -1,12 +1,9 @@
 
-  <link rel="stylesheet" type="text/css" href="jquery.ml-keyboard.css">
-  <!--<link rel="stylesheet" type="text/css" href="demo.css">-->
-
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="jquery.ml-keyboard.js"></script>
-  <script src="demo.js"></script>
-
-
+<link rel="stylesheet" type="text/css" href="jquery.ml-keyboard.css">
+<!--<link rel="stylesheet" type="text/css" href="demo.css">-->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="jquery.ml-keyboard.js"></script>
+<script src="demo.js"></script>
 
 <style type="text/css">
 .cajatexto_1 {
@@ -88,12 +85,18 @@ function validateForm()
     } else if (!z.match(/^\d+/)){
     	alert("Celular debe tener numeros");
         return false;
+    } else if (z.length > 9) {
+        alert("Numero de celular no puede ser mayor a 9");
+        return false;
+    } else if (z.length < 3) {
+        alert("Numero de celular no puede ser menor a 3");
+        return false;
     } else{
     	var s = document.getElementsByTagName("form");
 		s[0].submit();// Form submission
 
     }
-    }
+}
 
 </script>
 
@@ -101,7 +104,7 @@ function validateForm()
 <div>
 <form name="form" action="?controller=question&&action=cHJlZ3VudGFzZWlz" method="POST" autocomplete="off" id="form">
 	<input type="text" class="cajatexto_1" id="example-1" name="nombres" maxlength="50"  required/>
-    <input type="email" class="cajatexto_2" id="example-1" name="correo" maxlength="50"  required/>
+    <input type="text" class="cajatexto_2" id="example-1" name="correo" maxlength="50"  required/>
     <input type="text" class="cajatexto_3" id="example-1" name="celular" maxlength="9" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
 
 <img src="assets/images/6.png" usemap="#image-map">

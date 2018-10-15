@@ -4,7 +4,7 @@ div#mlkeyboard {
 	position: fixed;
 	z-index: 1;
 	left: 0px;
-    top: 100px;
+    top: 500px;
 }
 
 div#mlkeyboard ul,
