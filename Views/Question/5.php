@@ -68,13 +68,13 @@ function timeout_init() {
 
 function validateForm()
 {
-  var fields = ["nombres", "correo", "celular"]
+  //var fields = ["nombres", "correo", "celular"]
     var x = document.forms["form"]["nombres"].value;
     var y = document.forms["form"]["correo"].value;
     var z = document.forms["form"]["celular"].value;
 
     if (x == "") {
-        bootbox.alert("Ingrese Nombres y Apellidos");
+        alert("Ingrese Nombres y Apellidos");
         return false;
     } else if (y == "") {
     	alert("Ingrese Correo");
