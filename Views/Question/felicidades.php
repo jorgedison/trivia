@@ -1,3 +1,10 @@
+<body scroll="no" style="overflow: hidden">
+
+<style type="text/css">
+	.noline{
+		outline: none;
+	}
+</style>
 
 <script type="text/javascript">   
     function Redirect() 
